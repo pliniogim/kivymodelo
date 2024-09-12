@@ -1,0 +1,74 @@
+from kivy.uix.anchorlayout import AnchorLayout
+from kivy.uix.filechooser import FileChooserProgressBase
+from kivy.uix.screenmanager import Screen
+from constants import *
+
+from kivy.lang import Builder
+
+Builder.load_string("""
+#: import CButton custom_widgets
+#: import CTextInput custom_widgets
+#: import SignUpText custom_widgets                    
+
+<Login>:
+    BoxLayout:
+        padding: dp(20)
+        orientation: 'vertical'
+        BoxLayout:
+            size_min: 1, 0.35
+            Image:
+                source: "computer.png"
+        AnchorLayout:
+            size_hint: 1, 0.55
+            anchor_y: "top"
+            BoxLayout:
+                orientation: 'vertical'
+                size_hint_y: None
+                height: self.minimum_height
+                Label:
+                    color: 0 , 0 , 0 , 1
+                    font_size: '14sp'
+                    halign: "left"
+                    font_name: "roboto-black.ttf"
+                    size_hint_y: None
+                    size: self.texture_size
+                    text_size: self.size
+                    spacing: dp(10)
+                    padding: [dp(30), 0, dp(30), 0]
+                    text: "Login to your account"
+                CTextInput:
+                    padding: dp(15)
+                    size_hint_y: None
+                    height: dp(50)
+                    multiline: False
+                    hint_text: 'Email'
+                CTextInput:
+                    padding: dp(15)
+                    size_hint_y: None
+                    height: dp(50)
+                    multiline: False
+                    hint_text: 'Password'
+                CButton:
+                    id: loginbutton
+                    text: "Login"
+                    size_hint_y: None
+                    height: dp(50)
+        AnchorLayout:
+            size_hint: 1, 0.1
+            anchor_x: 'center'
+            BoxLayout:
+                size_hint_x: None
+                width: self.minimum_width
+                Label:
+                    text:"Don't have an account? "
+                    color: 0, 0, 0, 1  
+                    size_hint_x: None
+                    size: self.texture_size
+                SignUpText:    
+                    text: 'Sign up'                      
+                    size_hint_x: None
+                    size: self.texture_size
+""")
+
+class Login(Screen):
+    pass
