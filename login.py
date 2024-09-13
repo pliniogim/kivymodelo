@@ -89,6 +89,7 @@ class Login(Screen):
         email = self.ids.email.text
         password = self.ids.password.text
         if(Database.exist(email, password)):
+            self.manager.current = "Home"
             print("Login successfull")
         else:
             print("Login failed")
