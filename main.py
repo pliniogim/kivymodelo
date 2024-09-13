@@ -4,7 +4,7 @@ from login import Login
 from kivy.core.window import Window
 
 
-Window.size = (480,800)
+Window.size = (480, 640)
 #classe Interface
 class Interface(ScreenManager):
     def __init__(self, **kwargs):

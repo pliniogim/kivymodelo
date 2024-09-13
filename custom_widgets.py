@@ -18,7 +18,8 @@ Builder.load_string("""
     background_normal: ""
     background_color: self.bg_color
     font_name: "roboto-light.ttf"
-    font_size: "16sp"   
+    font_size: "12sp"   
+    padding: dp(15)
     
 <SignUpText>:
     color: self.bg_color

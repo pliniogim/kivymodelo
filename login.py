@@ -15,7 +15,7 @@ Builder.load_string("""
         padding: dp(20)
         orientation: 'vertical'
         BoxLayout:
-            size_min: 1, 0.35
+            size_min: 1, 0.15
             Image:
                 source: "computer.png"
         AnchorLayout:
@@ -25,9 +25,10 @@ Builder.load_string("""
                 orientation: 'vertical'
                 size_hint_y: None
                 height: self.minimum_height
+                spacing: '10dp'
                 Label:
                     color: 0 , 0 , 0 , 1
-                    font_size: '14sp'
+                    font_size: '12sp'
                     halign: "left"
                     font_name: "roboto-black.ttf"
                     size_hint_y: None
@@ -37,13 +38,11 @@ Builder.load_string("""
                     padding: [dp(30), 0, dp(30), 0]
                     text: "Login to your account"
                 CTextInput:
-                    padding: dp(15)
                     size_hint_y: None
                     height: dp(50)
                     multiline: False
                     hint_text: 'Email'
                 CTextInput:
-                    padding: dp(15)
                     size_hint_y: None
                     height: dp(50)
                     multiline: False
@@ -51,8 +50,13 @@ Builder.load_string("""
                 CButton:
                     id: loginbutton
                     text: "Login"
+                    size_hint_x: None
+                    pos_hint:{"center_x": 0.5, "y":0}
+                    
                     size_hint_y: None
                     height: dp(50)
+                    width: dp(100)
+                    
         AnchorLayout:
             size_hint: 1, 0.1
             anchor_x: 'center'
