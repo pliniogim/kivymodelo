@@ -43,18 +43,23 @@ Builder.load_string("""
                     color: 0, 0, 0, 1
                 CTextInput:
                     id: email
+                    write_tab: False
                     multiline: False
                     hint_text: 'Email'
                     size_hint_y: None
                     height: dp(50)
                 CTextInput:
                     id: password
+                    password: True
+                    write_tab: False
                     hint_text: "Password"
                     multiline: False
                     size_hint_y: None
                     height: dp(50)
                 CTextInput:
                     id: cpassword
+                    password: True
+                    write_tab: False
                     hint_text: "Password confirmation"
                     multiline: False
                     size_hint_y: None

@@ -1,6 +1,6 @@
 from kivy.uix.anchorlayout import AnchorLayout
-from kivy.uix.filechooser import FileChooserProgressBase
 from kivy.uix.screenmanager import Screen
+from kivy.uix.behaviors.focus import FocusBehavior
 from constants import *
 from mydatabase import Database
 from kivy.lang import Builder
@@ -40,12 +40,15 @@ Builder.load_string("""
                     text: "Login to your account"
                 CTextInput:
                     id: email
+                    write_tab: False
                     size_hint_y: None
                     height: dp(50)
                     multiline: False
                     hint_text: 'Email'
                 CTextInput:
                     id: password
+                    write_tab: False
+                    password: True
                     size_hint_y: None
                     height: dp(50)
                     multiline: False
