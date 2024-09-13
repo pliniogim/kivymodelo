@@ -2,7 +2,7 @@ from kivy.uix.anchorlayout import AnchorLayout
 from kivy.uix.filechooser import FileChooserProgressBase
 from kivy.uix.screenmanager import Screen
 from constants import *
-
+from mydatabase import Database
 from kivy.lang import Builder
 
 Builder.load_string("""
@@ -39,11 +39,13 @@ Builder.load_string("""
                     padding: [dp(30), 0, dp(30), 0]
                     text: "Login to your account"
                 CTextInput:
+                    id: email
                     size_hint_y: None
                     height: dp(50)
                     multiline: False
                     hint_text: 'Email'
                 CTextInput:
+                    id: password
                     size_hint_y: None
                     height: dp(50)
                     multiline: False
@@ -53,7 +55,7 @@ Builder.load_string("""
                     text: "Login"
                     size_hint_x: None
                     pos_hint:{"center_x": 0.5, "y":0}
-                    
+                    on_press: root.login()
                     size_hint_y: None
                     height: dp(50)
                     width: dp(100)
@@ -79,3 +81,12 @@ Builder.load_string("""
 class Login(Screen):
     def switchToSignup(self):
         self.manager.current = "signup"
+        
+    def login(self):
+        email = self.ids.email.text
+        password = self.ids.password.text
+        if(Database.exist(email, password)):
+            print("Login successfull")
+        else:
+            print("Login failed")
+        
