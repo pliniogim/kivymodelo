@@ -11,6 +11,7 @@ Builder.load_string("""
 #: import SignUpText custom_widgets                    
 
 <Login>:
+    name: "login"
     BoxLayout:
         padding: dp(20)
         orientation: 'vertical'
@@ -72,7 +73,9 @@ Builder.load_string("""
                     text: 'Sign up'                      
                     size_hint_x: None
                     size: self.texture_size
+                    on_press: root.switchToSignup()
 """)
 
 class Login(Screen):
-    pass
+    def switchToSignup(self):
+        self.manager.current = "signup"
