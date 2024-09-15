@@ -1,5 +1,6 @@
 from kivy.app import App
 from kivy.uix.screenmanager import ScreenManager
+from history import History
 from login import Login
 from kivy.core.window import Window
 from signup import Signup
@@ -25,6 +26,8 @@ class Interface(ScreenManager):
         self.add_widget(signup)
         home = Home()
         self.add_widget(home)
+        history = History()
+        self.add_widget(history)
         
 class NumberApp(App):
     pass

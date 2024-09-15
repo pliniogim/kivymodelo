@@ -3,8 +3,10 @@ from kivy.uix.actionbar import BoxLayout
 from kivy.uix.accordion import FloatLayout
 from kivy.lang import Builder
 from kivy.uix.screenmanager import Screen
-
+from history import History
+from mydatabase import Database
 from styles import Styles
+import random
 
 
 Builder.load_string("""
@@ -15,7 +17,10 @@ Builder.load_string("""
     name: "Home"
     FloatLayout:
         Image:
+            id: bg_img
             source: "computer.png"
+            fit_mode: "contain"
+            pos_hint: {'center_x': 0.5, 'top': 1.1 }
         BoxLayout:
             orientation: 'vertical'
             BoxLayout:
@@ -28,20 +33,28 @@ Builder.load_string("""
                 size_hint_y: None 
                 height: dp(60)
                 Label:
-                    text: "interesting Fact"
+                    text: "Interesting Fact"
                     font_name: 'roboto-black.ttf'
                     font_size: '20sp'
-                    color: 1, 1, 1, 1
                 AnchorLayout:
                     anchor_x: 'right'
                     padding: [0, 0, dp(30), 0]
                     Button:
+                        canvas.before:
+                            Rectangle:
+                                pos: self.pos 
+                                size: self.size
+                                source: "history.png"
                         size_hint:  None, None
                         size: dp(35), dp(35)
-                        text: "h"
+                        background_color: 0, 0, 0, 0
+                        on_press: root.switchToHistory()
+
             BoxLayout: 
                 Label:
-                    text: "Result"
+                    text_size: self.width, None
+                    id: result_placeholder
+                    padding: [dp(20), dp(20)]
                     color: 0, 0, 0, 1
             AnchorLayout:
                 anchor_y: 'center'
@@ -71,7 +84,7 @@ Builder.load_string("""
                             CTextInput:
                                 size_hint_y: None
                                 height: dp(50)
-                                id: 'day'
+                                id: day
                         BoxLayout:
                             orientation:'vertical'
                             spacing: '5dp'
@@ -87,11 +100,15 @@ Builder.load_string("""
                             CTextInput:
                                 size_hint_y: None
                                 height: dp(50)
-                                id: 'month'
+                                id: month
                     CButton: 
                         text: "Display Fact"
+                        font_name: "roboto-medium.ttf"
+                        font_size: "18sp"   
                         height: dp(60)
                         size_hint_y: None
+                        on_press: root.insertFact()
+                        
                     
                     
 
@@ -100,4 +117,19 @@ Builder.load_string("""
 
 class Home(Screen):
     bg_color = Styles.primary_color
+    
+    def insertFact(self):
+        day = self.ids.day.text
+        month = self.ids.month.text
+        print(day, month)
+        Database.insertFact(day + month, "x@teste.mail", f"Fact - Fact{random.randint(0, 1000)}")
+        try:
+            result = Database.getFact(day + month, "x@teste.mail")
+            self.ids.bg_img.color = ( 1, 1, 1, 0.3 )
+            self.ids.result_placeholder.text = result
+        except Exception as e:
+            print(e)
+        
+    def switchToHistory(self):
+        self.manager.current = "history"
     

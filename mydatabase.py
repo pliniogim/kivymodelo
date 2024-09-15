@@ -55,4 +55,43 @@ class Database:
         else:
             return False
 
+    @staticmethod
+    def insertFact(id, email, fact):
+        sql = "INSERT INTO fact_table(id, email, fact) VALUES (?, ?, ?)"
+        val = (f"{id}", f"{email}", f"{fact}")
+        cursor = Database.db.cursor()
+        cursor.execute(sql, val)
+        Database.db.commit()
+        print("Fact added with success")
         
+    @staticmethod
+    def getFact(id, email):
+        sql = f"select * from fact_table WHERE email = '{email}' AND id ='{id}'"
+        cursor = Database.db.cursor()
+        cursor.execute(sql)
+        fetch = cursor.fetchall()
+        for item in fetch:
+            id, mail, result = item
+        result = (result + " ")*10
+        print(result)
+        if  result:
+           return result
+        else:
+            return False
+        
+    @staticmethod
+    def getAllFact():
+        sql = f"select * from fact_table"
+        cursor = Database.db.cursor()
+        cursor.execute(sql)
+        result = ""
+        fetch = cursor.fetchall()
+        for item in fetch:
+            id, mail, fact = item 
+            result += fact + "\n"
+        print(result)
+        if result:
+            return result
+        else:
+            return False
+            
