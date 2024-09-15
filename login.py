@@ -5,6 +5,8 @@ from constants import *
 from mydatabase import Database
 from kivy.lang import Builder
 
+from styles import Styles
+
 Builder.load_string("""
 #: import CButton custom_widgets
 #: import CTextInput custom_widgets
@@ -28,7 +30,7 @@ Builder.load_string("""
                 height: self.minimum_height
                 spacing: '10dp'
                 Label:
-                    color: 0 , 0 , 0 , 1
+                    color: root.secondary_color
                     font_size: '12sp'
                     halign: "left"
                     font_name: "roboto-black.ttf"
@@ -71,7 +73,7 @@ Builder.load_string("""
                 width: self.minimum_width
                 Label:
                     text:"Don't have an account? "
-                    color: 0, 0, 0, 1  
+                    color: root.secondary_color  
                     size_hint_x: None
                     size: self.texture_size
                 SignUpText:    
@@ -82,6 +84,8 @@ Builder.load_string("""
 """)
 
 class Login(Screen):
+    email=None
+    secondary_color = Styles.secondary_color
     def switchToSignup(self):
         self.manager.current = "signup"
         

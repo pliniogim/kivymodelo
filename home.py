@@ -55,7 +55,7 @@ Builder.load_string("""
                     text_size: self.width, None
                     id: result_placeholder
                     padding: [dp(20), dp(20)]
-                    color: 0, 0, 0, 1
+                    color: root.secondary_color
             AnchorLayout:
                 anchor_y: 'center'
                 anchor_x: 'center'
@@ -74,7 +74,7 @@ Builder.load_string("""
                             spacing: dp(10)
                             Label:
                                 text: "Day"
-                                color: 0, 0, 0, 1
+                                color: root.secondary_color
                                 size_hint_y: None
                                 size: self.texture_size
                                 font_name: 'roboto-medium.ttf'
@@ -90,7 +90,7 @@ Builder.load_string("""
                             spacing: '5dp'
                             Label:
                                 text: "Month"
-                                color: 0, 0, 0, 1
+                                color: root.secondary_color
                                 size_hint_y: None
                                 size: self.texture_size
                                 font_name: 'roboto-medium.ttf'
@@ -117,6 +117,7 @@ Builder.load_string("""
 
 class Home(Screen):
     bg_color = Styles.primary_color
+    secondary_color = Styles.secondary_color
     
     def insertFact(self):
         day = self.ids.day.text

@@ -4,6 +4,7 @@ from kivy.uix.actionbar import BoxLayout
 from kivy.uix.screenmanager import Screen
 from kivy.lang import Builder
 from mydatabase import Database
+from styles import Styles
 
 
 
@@ -77,6 +78,7 @@ Builder.load_string("""
 
 class Signup(Screen):
     
+    secondary_color = Styles.secondary_color
     def createEntry(self):
         email = self.ids.email.text
         password = self.ids.password.text
