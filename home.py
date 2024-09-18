@@ -34,7 +34,7 @@ Builder.load_string("""
                 height: dp(60)
                 Label:
                     text: "Interesting Fact"
-                    font_name: 'roboto-black.ttf'
+                    #font_name: 'robotoblack.ttf'
                     font_size: '20sp'
                 AnchorLayout:
                     anchor_x: 'right'
@@ -77,7 +77,7 @@ Builder.load_string("""
                                 color: root.secondary_color
                                 size_hint_y: None
                                 size: self.texture_size
-                                font_name: 'roboto-medium.ttf'
+                                #font_name: 'robotomedium.ttf'
                                 font_size: '18sp'
                                 halign: 'left'
                                 text_size: self.size
@@ -93,7 +93,7 @@ Builder.load_string("""
                                 color: root.secondary_color
                                 size_hint_y: None
                                 size: self.texture_size
-                                font_name: 'roboto-medium.ttf'
+                                #font_name: 'robotomedium.ttf'
                                 font_size: '18sp'
                                 halign: 'left'
                                 text_size: self.size
@@ -103,7 +103,7 @@ Builder.load_string("""
                                 id: month
                     CButton: 
                         text: "Display Fact"
-                        font_name: "roboto-medium.ttf"
+                        #font_name: "robotomedium.ttf"
                         font_size: "18sp"   
                         height: dp(60)
                         size_hint_y: None
@@ -115,22 +115,23 @@ Builder.load_string("""
 
 """)
 
+
 class Home(Screen):
     bg_color = Styles.primary_color
     secondary_color = Styles.secondary_color
-    
+
     def insertFact(self):
         day = self.ids.day.text
         month = self.ids.month.text
         print(day, month)
-        Database.insertFact(day + month, "x@teste.mail", f"Fact - Fact{random.randint(0, 1000)}")
+        Database.insertFact(day + month, "x@teste.mail",
+                            f"Fact - Fact{random.randint(0, 1000)}")
         try:
             result = Database.getFact(day + month, "x@teste.mail")
-            self.ids.bg_img.color = ( 1, 1, 1, 0.3 )
+            self.ids.bg_img.color = (1, 1, 1, 0.3)
             self.ids.result_placeholder.text = result
         except Exception as e:
             print(e)
-        
+
     def switchToHistory(self):
         self.manager.current = "history"
-    

@@ -33,7 +33,7 @@ Builder.load_string("""
                     color: root.secondary_color
                     font_size: '12sp'
                     halign: "left"
-                    font_name: "roboto-black.ttf"
+                    # font_name: "robotoblack.ttf"
                     size_hint_y: None
                     size: self.texture_size
                     text_size: self.size
@@ -83,18 +83,19 @@ Builder.load_string("""
                     on_press: root.switchToSignup()
 """)
 
+
 class Login(Screen):
-    email=None
+    email = None
     secondary_color = Styles.secondary_color
+
     def switchToSignup(self):
         self.manager.current = "signup"
-        
+
     def login(self):
         email = self.ids.email.text
         password = self.ids.password.text
-        if(Database.exist(email, password)):
+        if (Database.exist(email, password)):
             self.manager.current = "Home"
             print("Login successfull")
         else:
             print("Login failed")
-        

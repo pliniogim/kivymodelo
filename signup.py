@@ -7,7 +7,6 @@ from mydatabase import Database
 from styles import Styles
 
 
-
 Builder.load_string("""
 #: import CButton custom_widgets
 #: import CTextInput custom_widgets
@@ -35,7 +34,7 @@ Builder.load_string("""
                     text: "Create your account"
                     sfont_size: '12sp'
                     halign: "left"
-                    font_name: "roboto-black.ttf"
+                    #font_name: "robotoblack.ttf"
                     size_hint_y: None
                     size: self.texture_size
                     text_size: self.size
@@ -77,16 +76,16 @@ Builder.load_string("""
 
 
 class Signup(Screen):
-    
+
     secondary_color = Styles.secondary_color
+
     def createEntry(self):
         email = self.ids.email.text
         password = self.ids.password.text
         cpassword = self.ids.cpassword.text
         if password == cpassword:
-            if(Database.isValid(email)):
-                Database.insertData(email = email, password = password)
+            if (Database.isValid(email)):
+                Database.insertData(email=email, password=password)
                 self.manager.current = "login"
             else:
                 print("Email already exists")
-        

@@ -24,7 +24,7 @@ Builder.load_string("""
             height: dp(60)
             Label:
                 text: "History"
-                font_name: 'roboto-black.ttf'
+                #font_name: 'robotoblack.ttf'
                 font_size: '20sp'
             AnchorLayout:
                 anchor_x: 'right'
@@ -51,14 +51,14 @@ Builder.load_string("""
                     color: root.secondary_color
 """)
 
+
 class History(Screen):
     bg_color = Styles.primary_color
     secondary_color = Styles.secondary_color
-    
+
     def on_pre_enter(self, *args):
-       result = Database.getAllFact()
-       self.ids.texto.text = result
-    
+        result = Database.getAllFact()
+        self.ids.texto.text = result
 
     def goToHome(self):
-         self.manager.current = "Home"
+        self.manager.current = "Home"
